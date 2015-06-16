@@ -1,0 +1,7 @@
+---
+- name: Web Server
+  hosts: webserver
+  sudo: True
+  roles:
+    - { role: nginx, nginx_file: [ 'site-conf2', 'site-conf3', 'site-conf4' ]}
+

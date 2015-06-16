@@ -1,0 +1,6 @@
+---
+- name: Load Balancer 
+  hosts: lb
+  sudo: True
+  roles:
+    - { role: nginx, nginx_file: site-conf1 }

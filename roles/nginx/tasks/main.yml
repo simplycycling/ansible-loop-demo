@@ -1,0 +1,13 @@
+---
+- name: Add apt key
+  apt_key: keyserver=keyserver.ubuntu.com id=C300EE8C
+- name: Add nginx repo
+  apt_repository: repo='deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main' state=present
+- name: update cache
+  apt: update_cache=yes
+- name: Install nginx
+  apt: name=nginx state=present
+- name: Copy site config files 
+  copy: src={{ item }} dest=/etc/nginx/sites-available
+  with_items:
+    - "{{ nginx_file }}"
