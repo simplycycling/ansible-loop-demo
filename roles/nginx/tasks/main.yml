@@ -6,7 +6,7 @@
   apt_key: data="{{ lookup('file', 'nginx_signing.key') }}" state=present
 - name: Add nginx repo
   apt_repository: repo='deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx' state=present
-- name: Add other goddamn repo
+- name: Add deb-src repo
   apt_repository: repo='deb-src http://nginx.org/packages/mainline/ubuntu/ trusty nginx' state=present
 - name: update cache
   apt: update_cache=yes
