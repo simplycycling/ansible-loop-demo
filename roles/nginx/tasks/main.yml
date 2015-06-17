@@ -1,8 +1,13 @@
 ---
+- name: Copy key
+  copy: src=nginx_signing.key dest=/home/vagrant
 - name: Add apt key
-  apt_key: keyserver=keyserver.ubuntu.com id=C300EE8C
+#  apt_key: keyserver=keyserver.ubuntu.com id=C300EE8C
+  apt_key: data="{{ lookup('file', 'nginx_signing.key') }}" state=present
 - name: Add nginx repo
-  apt_repository: repo='deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main' state=present
+  apt_repository: repo='deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx' state=present
+- name: Add other goddamn repo
+  apt_repository: repo='deb-src http://nginx.org/packages/mainline/ubuntu/ trusty nginx' state=present
 - name: update cache
   apt: update_cache=yes
 - name: Install nginx
