@@ -14,5 +14,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     webserver.vm.box = "ubuntu/trusty64"
     webserver.vm.network "forwarded_port", guest: 80, host: 8082
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+    ansible.sudo = true
+  end
 end
 
